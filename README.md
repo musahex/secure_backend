@@ -102,4 +102,4 @@ Pull requests are welcome! Please open an issue first to discuss changes. Follow
 
 ## 👥 Project Maintainers
 
-- **Musa** – [LinkedIn](https://www.linkedin.com/in/...) | Project Lead & Backend Developer
+- **Musa** – [LinkedIn]([https://www.linkedin.com/in/...](https://www.linkedin.com/in/muhammad-musa-0132a2197/) | Project Lead & Backend Developer
