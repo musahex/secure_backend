@@ -73,20 +73,20 @@ Visit: [http://localhost:5000/api-docs](http://localhost:5000/api-docs) for Swag
 
 ### Build the image
 ```bash
-docker build -t musa123/secureshift-backend .
+docker build -t musahx/secureshift-backend .
 ```
 
 ### Run the container
 ```bash
-docker run -p 5000:5000 --env-file .env musa123/secureshift-backend
+docker run -p 5000:5000 --env-file .env musahx/secureshift-backend
 ```
 
 ### Push to Docker Hub
 ```bash
-docker push musa123/secureshift-backend
+docker push musahx/secureshift-backend
 ```
 
-> Replace `musa123` with your DockerHub username.
+> Replace `musahx` with your DockerHub username.
 
 ---
 
