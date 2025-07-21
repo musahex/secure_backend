@@ -10,7 +10,9 @@ The backend service for **SecureShift**, a shift management platform connecting 
 - **MongoDB Atlas** (via Mongoose)
 - **JWT Authentication** with 2FA support
 - **RESTful API**
-- **Cloud Deployment** (GCP / Docker / Kubernetes)
+- **Swagger UI** for API documentation
+- **Dockerized** for container deployment
+- **Cloud Deployment** (GCP / DockerHub / Kubernetes)
 - **Notifications** (Guard shift updates & messaging)
 
 ---
@@ -25,8 +27,12 @@ The backend service for **SecureShift**, a shift management platform connecting 
 ├── middleware/         # Auth, error handlers
 ├── utils/              # Helpers (e.g., notifications)
 ├── config/             # DB and env setup
+├── swagger.js          # Swagger UI setup
+├── Dockerfile          # Container setup
+├── .dockerignore       # Docker exclusions
 ├── .env                # Environment variables (ignored)
 ├── server.js           # Entry point
+├── app.js              # Express config & middleware
 ```
 
 ---
@@ -50,7 +56,7 @@ Create a `.env` file in the root:
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/...
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/secureshift
 JWT_SECRET=your_jwt_secret
 ```
 
@@ -59,11 +65,41 @@ JWT_SECRET=your_jwt_secret
 npm start
 ```
 
+Visit: [http://localhost:5000/api-docs](http://localhost:5000/api-docs) for Swagger UI.
+
+---
+
+## 🐳 Docker Usage
+
+### Build the image
+```bash
+docker build -t musa123/secureshift-backend .
+```
+
+### Run the container
+```bash
+docker run -p 5000:5000 --env-file .env musa123/secureshift-backend
+```
+
+### Push to Docker Hub
+```bash
+docker push musa123/secureshift-backend
+```
+
+> Replace `musa123` with your DockerHub username.
+
 ---
 
 ## 📘 API Documentation
 
-Coming soon via Swagger or Postman collection.
+API is documented using **Swagger UI**.  
+Once the server is running, open:
+
+```
+http://localhost:5000/api-docs
+```
+
+You can explore, test, and understand the structure of all API endpoints there.
 
 ---
 
@@ -75,6 +111,8 @@ Coming soon via Swagger or Postman collection.
 - Employer–Guard messaging
 - Admin panel access to all records
 - Real-time notifications (e.g., shift updates)
+- API docs with Swagger UI
+- Fully containerized backend with Docker
 
 ---
 
@@ -102,4 +140,4 @@ Pull requests are welcome! Please open an issue first to discuss changes. Follow
 
 ## 👥 Project Maintainers
 
-- **Musa** – [LinkedIn]([https://www.linkedin.com/in/...](https://www.linkedin.com/in/muhammad-musa-0132a2197/) | Project Lead & Backend Developer
+- **Musa** – [LinkedIn](https://www.linkedin.com/in/muhammad-musa-0132a2197/) | Project Lead & Backend Developer
