@@ -1,40 +1,35 @@
 # SecureShift Backend
 
-The backend service for **SecureShift**, a shift management platform connecting employers with security guards. This Node.js API powers the authentication, shift coordination, and messaging system across the Guard App, Employer Panel, and Admin Dashboard.
+The backend service for **SecureShift**, a shift management platform connecting employers with security guards. This Node.js API powers authentication, shift coordination, and messaging for the Guard App, Employer Panel, and Admin Dashboard.
 
 ---
 
 ## 🧩 Tech Stack
 
 - **Node.js** + **Express.js**
-- **MongoDB Atlas** (via Mongoose)
-- **JWT Authentication** with 2FA support
+- **MongoDB** (via Mongoose)
+- **JWT Authentication** with optional 2FA
 - **RESTful API**
 - **Swagger UI** for API documentation
-- **Dockerized** for container deployment
-- **Cloud Deployment** (GCP / DockerHub / Kubernetes)
-- **Notifications** (Guard shift updates & messaging)
+- **Docker + Docker Compose** for containerized development
+- **Testing** with Jest and Supertest
 
 ---
 
-## 📦 Project Structure
+## 📁 Project Structure
 
-```
-/secureshift-backend
-├── controllers/        # Route logic
-├── models/             # Mongoose schemas
-├── routes/             # API endpoints
-├── middleware/         # Auth, error handlers
-├── utils/              # Helpers (e.g., notifications)
-├── config/             # DB and env setup
-├── swagger.js          # Swagger UI setup
-├── Dockerfile          # Container setup
-├── .dockerignore       # Docker exclusions
-├── .env                # Environment variables (ignored)
-├── server.js           # Entry point
-├── app.js              # Express config & middleware
-```
-
+secure_backend/
+├── src/ # App logic: routes, controllers, models
+├── tests/ # Unit & integration tests
+├── connectDB.js # MongoDB connection
+├── docker-compose.yml # Docker services definition
+├── Dockerfile # Backend image setup
+├── mongo-init.js # Mongo init script (optional)
+├── server.js # App entry point
+├── swagger.js # Swagger config
+├── .env # Environment config
+├── package.json # Project metadata
+└── README.md # Project info
 ---
 
 ## 🚀 Setup Instructions
@@ -56,8 +51,8 @@ Create a `.env` file in the root:
 
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/secureshift
-JWT_SECRET=your_jwt_secret
+MONGO_URI=mongodb://admin:adminpass@mongodb:27017/secureshift?authSource=admin
+JWT_SECRET=your_jwt_secret_here
 ```
 
 ### 4. Start the server
@@ -70,12 +65,16 @@ Visit: [http://localhost:5000/api-docs](http://localhost:5000/api-docs) for Swag
 ---
 
 ## 🐳 Docker Usage
-
+```bash
+docker compose build
+```
 ### Build the image
 ```bash
 docker build -t musahx/secureshift-backend .
 ```
-
+```bash
+docker compose up
+```
 ### Run the container
 ```bash
 docker run -p 5000:5000 --env-file .env musahx/secureshift-backend
@@ -98,6 +97,7 @@ Once the server is running, open:
 ```
 http://localhost:5000/api-docs
 ```
+
 
 You can explore, test, and understand the structure of all API endpoints there.
 
