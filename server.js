@@ -1,14 +1,19 @@
-import dotenv from 'dotenv';
-dotenv.config();
+const express = require("express");
+const connectDB = require('./connectDB');
+require("dotenv").config();
 
-import app from './src/app.js';
-import connectDB from './src/config/db.js';
+const app = express();
+connectDB(); // Call the DB connection function
+
+// Middleware
+app.use(express.json());
+
+// Routes
+app.get("/", (req, res) => {
+  res.send("SecureShift API is running.");
+});
 
 const PORT = process.env.PORT || 5000;
-
-connectDB().then(() => {
-    app.listen(PORT, () => {
-    console.log(`SecureShift API running on port ${PORT}`);
-    console.log(`📘 Swagger UI available at: http://localhost:${PORT}/api-docs`);
-    });
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
